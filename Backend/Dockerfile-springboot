@@ -1,0 +1,9 @@
+ARG jdk=17
+FROM eclipse-temurin:${jdk}-centos7
+VOLUME /tmp
+
+WORKDIR /app
+
+COPY ../target/*.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]

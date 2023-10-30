@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+
+  spring-boot-app:
+    build:
+     dockerfile: Dockerfile-springboot
+    ports:
+     - "8081:8080"
+    depends_on:
+     - db
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: academy
+      POSTGRES_PASSWORD: academy
+      POSTGRES_DB: citybike
+    build:
+      dockerfile: Dockerfile-postgres
+    ports:
+      - 5432:5432
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080" #detta
