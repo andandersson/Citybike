@@ -1,6 +1,5 @@
 package citybike.backend.entity;
 
-
 import jakarta.persistence.*;
 
 @Entity
@@ -16,7 +15,6 @@ public class Station {
     private Double coordinateX;
     @Column(name = "coordinate_y")
     private Double coordinateY;
-
     public Long getId() {
         return id;
     }
