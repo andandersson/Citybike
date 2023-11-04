@@ -53,7 +53,7 @@ public class StationViewServiceTest {
 
     @Test
     public void testThatAverageDistanceByStationIsCorrect(){
-        double distance = 1;
+        long distance = 1;
         Mockito.when(stationViewService.findAverageDistanceByStationId(1)).thenReturn(distance);
         assertEquals((int)distance, 1);
        // assertEquals(distance, 1);
@@ -61,7 +61,7 @@ public class StationViewServiceTest {
 
     @Test
     public void testThatAverageDurationByStationIsCorrect(){
-        double duration = 1;
+        long duration = 1;
         Mockito.when(stationViewService.findAverageDistanceByStationId(1)).thenReturn(duration);
         assertEquals((int)duration, 1);
     }

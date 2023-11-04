@@ -2,6 +2,7 @@ package citybike.backend.Service;
 
 import citybike.backend.dto.StationViewDTO;
 import citybike.backend.entity.Station;
+import citybike.backend.exceptions.InvalidStationNameException;
 import citybike.backend.repository.StationRepository;
 import citybike.backend.repository.JourneyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,8 +127,13 @@ public class StationViewService {
 
     public Long getIdByStationName(String stationName) {
         Optional<Long> result = stationRepository.findIdByStationName(stationName);
-        long stationId = result.orElse(null);
-        return stationId;
+
+        if (result.isPresent()) {
+            return result.get();
+        } else {
+            throw new InvalidStationNameException("Invalid station name: " + stationName);
+        }
+
     }
 
     /**
@@ -172,22 +178,33 @@ public class StationViewService {
 
     /**
      * This is an implementation of the method findAverageDistanceByStationId in the journeyrepository.
-     * It is returning the average distance o of all journeys starting from a particular station
+     * It is returning the average distance o of all journeys starting from a particular station,
+     * after rounding of the decimals and converting it to a long.
      * @param stationId
      * @return
      */
-    public double findAverageDistanceByStationId(long stationId){
-        return this.journeyRepository.findAverageDistanceByStationId(stationId);
+    public long findAverageDistanceByStationId(long stationId){
+        double result = this.journeyRepository.findAverageDistanceByStationId(stationId);
+        int intValue = (int) Math.round(result);
+        long averageDistance = (long)intValue;
+
+        return averageDistance;
     }
 
     /**
      * This is an implementation of the method findAverageDurationByStationId in the journeyrepository.
-     * It is returning the average duration o of all journeys starting from a particular station
+     * It is returning the average duration o of all journeys starting from a particular station,
+     * after rounding of the decimals and converting it to a long.
      * @param stationId
      * @return
      */
-    public double findAverageDurationByStationId(long stationId){
-        return this.journeyRepository.findAverageDurationByStationId(stationId);
+    public long findAverageDurationByStationId(long stationId){
+        double result = this.journeyRepository.findAverageDurationByStationId(stationId);
+        int intValue = (int) Math.round(result);
+        long averageDuration = (long)intValue;
+
+        return averageDuration;
+
     }
 
 }
