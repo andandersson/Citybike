@@ -1,43 +1,60 @@
-package citybike.backend.util;
+package citybike.backend.service;
 
+import citybike.backend.Service.JourneyService;
 import citybike.backend.entity.Journey;
-import citybike.backend.entity.Station;
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.Assert.*;
 
-public class MockLists {
+/**
+ * Testing the two methods in JourneyController, with a mock for the class, and
+ * two list of simulated journeys.
+ */
+public class JourneyServiceTest {
+    private JourneyService journeyService = Mockito.mock(JourneyService.class);
+
+    List<Journey> mockListJourneysWithSameDepartureStations;
+    List<Journey> mockListJourneysWithSameReturnStations;
 
     /**
-     * Here a simulated list of stations, which represent the stations in the database, is created.
-     * @return
+     * The init method is creating two lists of simulated journeys that are needed
+     * in the tests. One is with the same departuredate, the other one with the same
+     * returndate. Those lists are also returned when the methods getJourneysByDepartureStationId
+     * and getJourneysByReturnStationId are called with the mock.
      */
-    public static List<Station> createMockStations(){
-        List<Station>stationList = new ArrayList<Station>();
-        Station stationOne = new Station();
-        stationOne.setId(1L);
-        stationOne.setStationName("Station1");
-        stationOne.setStationAddress("Address1");
-        stationOne.setCoordinateX(12.345);
-        stationOne.setCoordinateY(67.890);
-
-        Station stationTwo = new Station();
-        stationOne.setId(2L);
-        stationOne.setStationName("Station2");
-        stationOne.setStationName("Address2");
-        stationOne.setCoordinateX(34.567);
-        stationOne.setCoordinateY(34.567);
-
-        stationList.add(stationOne);
-        stationList.add(stationTwo);
-
-        return stationList;
+    @BeforeEach
+    public void init(){
+        mockListJourneysWithSameDepartureStations = this.createMockJourneysAccordingToDepartureStaion();
+        mockListJourneysWithSameReturnStations = this.createMockJourneysAccordingToReturnStation();
+        Mockito.when(journeyService.getJourneysByDepartureStationId(22L)).
+                thenReturn(mockListJourneysWithSameDepartureStations);
+        Mockito.when(journeyService.getJourneysByReturnStationId(22L)).
+                thenReturn(mockListJourneysWithSameReturnStations);
     }
+
     /**
-     * Here a simulated list of journeys with the same departure station is created.
-     * @return
+     * Testing that the methods getJourneysByDepartureStationId and getJourneysByReturnStationId are not returning null
      */
+    @Test
+    public void testMockListsAreNotEMpty(){
+        assertNotNull(mockListJourneysWithSameDepartureStations);
+        assertNotNull(mockListJourneysWithSameReturnStations);
+    }
+
+    /**
+     * Testing that the method getJourneysByDepartureStationId and getJourneysByReturnStationId are
+     * returning lists of correct length
+     */
+    @Test
+    public void testThatStationJourneyControllerMethodsAreReturningCorrectListLength(){
+        assertEquals(2, mockListJourneysWithSameDepartureStations.size());
+        assertEquals(2, mockListJourneysWithSameReturnStations.size());
+    }
+
     public static List<Journey> createMockJourneysAccordingToDepartureStaion(){
 
 
@@ -70,6 +87,7 @@ public class MockLists {
         journeyList.add(journeyTwo);
         return journeyList;
     }
+
     /**
      * Here a simulated list of journeys with the same return station is created.
      * @return

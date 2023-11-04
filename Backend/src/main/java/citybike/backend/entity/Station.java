@@ -2,6 +2,9 @@ package citybike.backend.entity;
 
 import jakarta.persistence.*;
 
+/**
+ * Entity class for representing the station table in the database.
+ */
 @Entity
 @Table(name ="station")
 public class Station {

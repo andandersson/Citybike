@@ -3,7 +3,9 @@ package citybike.backend.entity;
 import jakarta.persistence.*;
 import java.sql.Date;
 
-
+/**
+ * Entity class for representing the journey-table in the database.
+ */
 @Entity
 @Table(name ="journey")
 public class Journey {
