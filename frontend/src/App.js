@@ -2,7 +2,7 @@ import './App.css';
 import StationList from './components/StationList';
 import SingleStationView from "./components/SingleStationView";
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Import Navigate
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 
@@ -20,8 +20,8 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/stations/" element={<StationList />} />
-                    <Route path="/stations/:stationName" element={<SingleStationView/>} />
-                    <Route path="*" element={<NotFound />} />
+                    <Route path="/stations/:stationName" element={<SingleStationView />} />
+                    <Route path="*" element={<Navigate to="/stations" />} /> {/* Set default route to "/stations" */}
                 </Routes>
             </div>
         </Router>

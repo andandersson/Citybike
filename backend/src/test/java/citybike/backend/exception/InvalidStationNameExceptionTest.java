@@ -4,7 +4,7 @@ import citybike.backend.exceptions.InvalidStationNameException;
 import org.junit.Test;
 
 /**
- * Testclass for the clas InvalidStationNameException.
+ * Testclass for the class InvalidStationNameException.
  */
 public class InvalidStationNameExceptionTest {
 
