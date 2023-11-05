@@ -1,0 +1,10 @@
+.back-to-list{
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 8px; /* Adjust the radius as needed */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Adjust the shadow as needed */
+    padding: 10px 20px; /* Adjust padding as needed */
+    cursor: pointer;
+    font-size: 16px;
+}

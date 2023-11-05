@@ -6,13 +6,17 @@ has been written in Java with the Spring framework. The frontend has been writte
 
 # Technical requirements for the backend
 The requirements for a successful setup of the backend are the following:
+
 -Java 17 (might work with other versions, but not guaranteed)
+
 -Docker desktop (in the development process i used version 4.19.0)
+
 -Apache Maven (for this project version 3.8.6 is used)
+
 -PostgreSQL (I used version 16.0)
 
 # Technical requirements for the frontend
--Node js
+-NodeJs (for this project i used version 16.16)
 
 # How to run the backend
 The first time you run this application, you need to set up the docker container.
