@@ -32,7 +32,7 @@ function SingleStationView() {
             <h2>Amount of journeys from station:</h2>{station.journeysFromStation}
             <h2>Amount of journeys to station:</h2>{station.journeysToStation}
             <h2>Average distance of journeys from station:</h2>{station.averageDistanceOfJourneysFromStation}
-            <h2>Average distance of journeys to station:</h2>{station.averageDistanceToJourneysFromStation}
+            <h2>Average duration of journeys to station:</h2>{station.averageDurationOfJourneysFromStation}
         </div>
     );
 }
