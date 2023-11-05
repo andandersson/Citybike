@@ -11,6 +11,9 @@ The requirements for a successful setup of the backend are the following:
 -Apache Maven (for this project version 3.8.6 is used)
 -PostgreSQL (I used version 16.0)
 
+# Technical requirements for the frontend
+-Node js
+
 # How to run the backend
 The first time you run this application, you need to set up the docker container.
 Navigate to the directory /backend of this application and run:
@@ -23,7 +26,9 @@ docker-compose build
 
 Then the docker container will be setup and the database initialised. You can now log in 
 to the PostgreSQL database at the url http://localhost:8080. The username and password are
-found in the docker-compose.yml file.
+found in the docker-compose.yml file. 
+
+BE SURE THAT the docker container is up and running and the database initialised before you proceed!
 
 Now you can install the dependencies. Again, navigate to /backend and run:
 
