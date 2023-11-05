@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+/**
+ * Main class and main method.
+ */
 @SpringBootApplication
 @EnableJpaRepositories
 public class CitybikeApplication {
