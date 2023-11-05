@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 /**
@@ -10,16 +11,26 @@ import { useParams } from 'react-router-dom';
  * @constructor
  */
 function SingleStationView() {
+    const navigate = useNavigate();
     const { stationName } = useParams();
     const [station, setStation] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:8888/stations/${stationName}`) // Correct URL with template literals
-            .then((response) => response.json())
+        fetch(`http://localhost:8888/stations/${stationName}`)
+            .then((response) => {
+                if (!response.ok) {
+                    // If the response status is not ok, navigate to the NotFound component
+                    navigate('/404');
+                }
+                return response.json();
+            })
             .then((data) => {
-                setStation(data); // Use setStation to update the state
+                setStation(data);
             });
-    }, [stationName]);
+    }, [stationName, navigate]);
+
+
+
     if (!station) {
         // Display a loading indicator or message while data is being fetched
         return <div>Loading...</div>;
@@ -31,8 +42,8 @@ function SingleStationView() {
             <h2>Station address:</h2>{station.stationAddress}
             <h2>Amount of journeys from station:</h2>{station.journeysFromStation}
             <h2>Amount of journeys to station:</h2>{station.journeysToStation}
-            <h2>Average distance of journeys from station:</h2>{station.averageDistanceOfJourneysFromStation}
-            <h2>Average duration of journeys from station:</h2>{station.averageDurationOfJourneysFromStation}
+            <h2>Average distance of journeys from station:</h2>{station.averageDistanceOfJourneysFromStation} km
+            <h2>Average duration of journeys from station:</h2>{station.averageDurationOfJourneysFromStation} minutes
         </div>
     );
 }

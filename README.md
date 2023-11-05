@@ -1,87 +1,63 @@
-Commands:
+# Citybike application
+
+This is a fullstack application that will show information about journeys with the
+citybikes in the Helsinki region. It can be freely cloned, used and modified. The backend
+has been written in Java with the Spring framework. The frontend has been written in React.
+
+# Technical requirements for the backend
+The requirements for a successful setup of the backend are the following:
+-Java 17 (might work with other versions, but not guaranteed)
+-Docker desktop (in the development process i used version 4.19.0)
+-Apache Maven (for this project version 3.8.6 is used)
+-PostgreSQL (I used version 16.0)
+
+# How to run the backend
+The first time you run this application, you need to set up the docker container.
+Navigate to the directory /backend of this application and run:
 
 docker compose up --build --renew-anon-volumes -d
+
+If you need to rebuild the docker images you can run:
+
+docker-compose build
+
+Then the docker container will be setup and the database initialised. You can now log in 
+to the PostgreSQL database at the url http://localhost:8080. The username and password are
+found in the docker-compose.yml file.
+
+Now you can install the dependencies. Again, navigate to /backend and run:
+
 mvn clean install
-mvn clean package
+
+The dependencies for Springboot and other dependencies are installed, 
+and the tests are also run, and the backend is build. Now you can start the
+backend. In the /backend directory, run:
+
 mvn spring-boot:run
 
-if need to rebuild docker containers: docker-compose build
+You can also run it from the main method in the class CityBikeApplication, however i recommend
+the mvn-command for better control in case you intend to develop this application further.
 
-This file will be developed as the project progresses!
+Now the backend is up and running. If you navigate to http://localhost:8888/stations You
+will see the names of all the citybikestations displayed. You can view an info about
+a single station by navigating to http://localhost:8888/stations/{stationName}
 
+# How to run the frontend
 
-Frontend:
-# Getting Started with Create React App
+Navigate to /frontend. To install the dependencies, run:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+npm install
 
-## Available Scripts
+And then to start the frontend run:
 
-In the project directory, you can run:
+npm start
 
-### `npm start`
+Now the frontend is running. You can navigate to the starting page at: http://localhost:3000/stations/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Testing at the frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In order to run all the unit tests, you can run 
 
-### `npm test`
+npm test
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-## npm install react-router-dom
-to enable routing
 

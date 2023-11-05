@@ -4,7 +4,7 @@ import SingleStationView from "./components/SingleStationView";
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header";
-
+import NotFound from "./components/NotFound";
 
 /**
  * The starting point of the frontend. Here the header is rendered, as well as the list with
@@ -21,6 +21,7 @@ function App() {
                 <Routes>
                     <Route path="/stations/" element={<StationList />} />
                     <Route path="/stations/:stationName" element={<SingleStationView/>} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>
         </Router>

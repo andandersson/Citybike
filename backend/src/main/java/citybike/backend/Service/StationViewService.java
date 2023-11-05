@@ -179,7 +179,8 @@ public class StationViewService {
     /**
      * This is an implementation of the method findAverageDistanceByStationId in the journeyrepository.
      * It is returning the average distance o of all journeys starting from a particular station,
-     * after rounding of the decimals and converting it to a long.
+     * after rounding of the decimals and converting it to a long. It is then divided by 1000 to
+     * get a km -value.
      * @param stationId
      * @return
      */
@@ -187,14 +188,15 @@ public class StationViewService {
         double result = this.journeyRepository.findAverageDistanceByStationId(stationId);
         int intValue = (int) Math.round(result);
         long averageDistance = (long)intValue;
-
+        averageDistance = Math.round((double)averageDistance / 1000);
         return averageDistance;
     }
 
     /**
      * This is an implementation of the method findAverageDurationByStationId in the journeyrepository.
      * It is returning the average duration o of all journeys starting from a particular station,
-     * after rounding of the decimals and converting it to a long.
+     * after rounding of the decimals and converting it to a long. It is then divided by 60 to get
+     * a minute value.
      * @param stationId
      * @return
      */
@@ -202,7 +204,7 @@ public class StationViewService {
         double result = this.journeyRepository.findAverageDurationByStationId(stationId);
         int intValue = (int) Math.round(result);
         long averageDuration = (long)intValue;
-
+        averageDuration = Math.round(((double) averageDuration/60));
         return averageDuration;
 
     }

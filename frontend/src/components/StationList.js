@@ -23,13 +23,12 @@ function StationList() {
 
 
     return (
-            <div className="station-list">
+            <div className="station-list" data-testid="station-list">
                 <h2>List of stations</h2>
                 <div style={{ maxHeight: '400px', overflowY: 'scroll' }}> {/* Adjust the height as needed */}
                     <ul style={{ listStyleType: 'none' }}>
                         {stations.map((station) => (
                             <li key={station.name}>
-                                <div class></div>
                                 <Link to={`/stations/${station.name}`} className="link-styling">{station.name}</Link>
                             </li>
                         ))}
